@@ -1,0 +1,18 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="128" height="128" rx="24" fill="url(#gradient)"/>
+  <defs>
+    <linearGradient id="gradient" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#667eea"/>
+      <stop offset="100%" stop-color="#764ba2"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Курсор мыши -->
+  <path d="M40 25 L40 80 L50 70 L58 90 L68 86 L60 66 L75 66 L40 25Z" fill="white" stroke="#333" stroke-width="2"/>
+  
+  <!-- Галочка -->
+  <circle cx="90" cy="90" r="22" fill="#4CAF50"/>
+  <path d="M80 90 L87 97 L100 82" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
+
+

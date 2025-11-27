@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClickON</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>ClickON</h1>
+      <p class="subtitle">Разблокировка кнопок мыши</p>
+    </div>
+    
+    <div class="content">
+      <div class="toggle-container">
+        <label class="switch">
+          <input type="checkbox" id="toggleExtension" checked>
+          <span class="slider"></span>
+        </label>
+        <span class="status-text" id="statusText">Включено</span>
+      </div>
+      
+      <div class="info">
+        <div class="info-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Разблокировка копирования</span>
+        </div>
+        
+        <div class="info-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Разблокировка правой кнопки</span>
+        </div>
+        
+        <div class="info-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M15 15l6 6m-11-4l8-8m-8-3l6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="11" cy="11" r="8" stroke-width="2"/>
+          </svg>
+          <span>Разблокировка выделения</span>
+        </div>
+      </div>
+      
+      <div class="note">
+        <p>💡 После изменения настройки перезагрузите страницу для полного эффекта</p>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>v1.0.0</p>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
+
+

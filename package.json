@@ -1,0 +1,21 @@
+{
+  "name": "clickon-extension",
+  "version": "1.0.0",
+  "description": "Расширение для разблокировки кнопок мыши в Chrome",
+  "scripts": {
+    "generate-icons": "node generate-icons.js"
+  },
+  "keywords": [
+    "chrome-extension",
+    "mouse",
+    "unlock",
+    "right-click"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "sharp": "^0.33.0"
+  }
+}
+
+
