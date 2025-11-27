@@ -21,12 +21,24 @@
       e.stopPropagation();
     }, true);
 
-    // Разблокируем события мыши (клики, нажатия)
-    ['mousedown', 'mouseup', 'click', 'dblclick'].forEach(function(eventType) {
+    // Разблокируем события мыши только для правой кнопки (button === 2)
+    ['mousedown', 'mouseup'].forEach(function(eventType) {
       document.addEventListener(eventType, function(e) {
-        e.stopPropagation();
+        // Блокируем только правую кнопку (button === 2) и среднюю (button === 1)
+        if (e.button === 2 || e.button === 1) {
+          e.stopPropagation();
+        }
       }, true);
     });
+
+    // Для contextmenu и правого клика
+    document.addEventListener('click', function(e) {
+      // Разблокируем только если это правая кнопка или средняя
+      // Левая кнопка (button === 0) должна работать нормально
+      if (e.button === 2 || e.button === 1) {
+        e.stopPropagation();
+      }
+    }, true);
 
     // Разблокируем drag события
     ['dragstart', 'drag', 'dragend'].forEach(function(eventType) {
@@ -71,18 +83,16 @@
   function removeExistingListeners() {
     // Сохраняем оригинальные методы
     const originalAddEventListener = EventTarget.prototype.addEventListener;
-    const originalRemoveEventListener = EventTarget.prototype.removeEventListener;
 
-    // Список событий для блокировки блокировки
+    // Список событий для блокировки блокировки (только правая кнопка и выделение)
     const protectedEvents = [
       'contextmenu', 'copy', 'cut', 'paste', 'selectstart',
-      'mousedown', 'mouseup', 'click', 'dblclick',
       'dragstart', 'drag', 'dragend'
     ];
 
     // Перехватываем addEventListener для блокируемых событий
     EventTarget.prototype.addEventListener = function(type, listener, options) {
-      // Если это защищенное событие и options содержит preventDefault
+      // Если это защищенное событие
       if (protectedEvents.includes(type)) {
         // Оборачиваем listener, чтобы предотвратить preventDefault
         const wrappedListener = function(e) {
@@ -100,6 +110,32 @@
           
           // Восстанавливаем оригинальный preventDefault
           e.preventDefault = originalPreventDefault;
+        };
+        
+        return originalAddEventListener.call(this, type, wrappedListener, options);
+      }
+      
+      // Для mousedown, mouseup, click - проверяем кнопку мыши
+      if (['mousedown', 'mouseup', 'click'].includes(type)) {
+        const wrappedListener = function(e) {
+          // Блокируем preventDefault только для правой и средней кнопок
+          if (e.button === 2 || e.button === 1) {
+            const originalPreventDefault = e.preventDefault;
+            e.preventDefault = function() {
+              console.log(`ClickON: Предотвращена блокировка клика кнопкой ${e.button}`);
+            };
+            
+            try {
+              listener.call(this, e);
+            } catch (error) {
+              // Игнорируем ошибки
+            }
+            
+            e.preventDefault = originalPreventDefault;
+          } else {
+            // Для левой кнопки (button === 0) работаем нормально
+            listener.call(this, e);
+          }
         };
         
         return originalAddEventListener.call(this, type, wrappedListener, options);
